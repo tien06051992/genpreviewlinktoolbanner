@@ -1,0 +1,352 @@
+.body{
+	font-family:Arial;
+	font-size: 14px;
+	font-weight: normal;
+	font-style: normal;	
+}
+.container{
+	width: 300px;
+	height: 600px;
+	overflow:hidden;
+	position:relative;
+}
+.container div {
+  -webkit-animation-duration: 8s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-direction: normal;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-play-state: running;
+  -webkit-animation-fill-mode: forwards;
+
+  -moz-animation-duration: 8s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: 1;
+  -moz-animation-direction: normal;
+  -moz-animation-delay: 0s;
+  -moz-animation-play-state: running;
+  -moz-animation-fill-mode: forwards;
+
+  animation-duration: 8s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-delay: 0s;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+}
+.frame{
+  width:100%;
+	height:100%;
+	position: absolute;
+	top: 0; 
+	left:0;
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-size:cover;
+}
+#intro{
+	opacity:1;
+	-webkit-animation-name: introAnim;
+  -moz-animation-name: introAnim;
+  animation-name: introAnim;
+}
+#logo{
+	opacity:0;
+	-webkit-animation-name: logoAnim;
+  -moz-animation-name: logoAnim;
+  animation-name: logoAnim;
+}
+#presents{
+	opacity:0;
+	-webkit-animation-name: presentsAnim;
+  -moz-animation-name: presentsAnim;
+  animation-name: presentsAnim;
+}
+#logoWhite{
+	opacity:0;
+	-webkit-animation-name: logoWhiteAnim;
+  -moz-animation-name: logoWhiteAnim;
+  animation-name: logoWhiteAnim;
+}
+#splash{
+	opacity:0;
+	-webkit-animation-name: splashAnim;
+  -moz-animation-name: splashAnim;
+  animation-name: splashAnim;
+}
+#lastFrame{
+	opacity:0;
+	-webkit-animation-name: lastFrameAnim;
+  -moz-animation-name: lastFrameAnim;
+  animation-name: lastFrameAnim;
+}
+#logoBlack{
+	opacity:0;
+	-webkit-animation-name: logoBlackAnim;
+  -moz-animation-name: logoBlackAnim;
+  animation-name: logoBlackAnim;
+}
+#hash1{
+	opacity:0;
+	-webkit-animation-name: hash1Anim;
+  -moz-animation-name: hash1Anim;
+  animation-name: hash1Anim;
+}
+#hash2{
+	opacity:0;
+	-webkit-animation-name: hash2Anim;
+  -moz-animation-name: has2Anim;
+  animation-name: hash2Anim;
+}
+#tag {
+	opacity: 0;
+	-webkit-animation-name: tagAnim;
+  -moz-animation-name: tagAnim;
+  animation-name: tagAnim;
+}
+#cta {
+	opacity: 0;
+	-webkit-animation-name: ctaAnim;
+  -moz-animation-name: ctaAnim;
+  animation-name: ctaAnim;
+}
+#bottomLine{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top: 0; 
+	left:0;
+}
+
+/* animations  ----------------------------------------------------------------*/
+/*introAnim*/
+@-webkit-keyframes introAnim {
+		0% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+@-moz-keyframes introAnim {
+		0% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+@keyframes introAnim {
+		0% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+/*logoAnim*/
+@-webkit-keyframes logoAnim {
+		0% {opacity:0;}
+		5% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+@-moz-keyframes logoAnim {
+		0% {opacity:0;}
+		5% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+@keyframes logoAnim {
+		0% {opacity:0;}
+		5% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+/*presentsAnim*/
+@-webkit-keyframes presentsAnim {
+		0% {opacity:0;}
+		2% {opacity:0;}
+		7% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+@-moz-keyframes presentsAnim {
+		0% {opacity:0;}
+		2% {opacity:0;}
+		7% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+@keyframes presentsAnim {
+		0% {opacity:0;}
+		2% {opacity:0;}
+		7% {opacity:1;}
+		19% {opacity:1;}
+		27% {opacity:0;}
+    100% {opacity:0;}
+}
+/*logoWhiteAnim*/
+@-webkit-keyframes logoWhiteAnim {
+		0% {opacity:0;}
+		18% {opacity:0;}
+		24% {opacity:1;}
+    100% {opacity:1;}
+}
+@-moz-keyframes logoWhiteAnim {
+		0% {opacity:0;}
+		18% {opacity:0;}
+		24% {opacity:1;}
+    100% {opacity:1;}
+}
+@keyframes logoWhiteAnim {
+		0% {opacity:0;}
+		18% {opacity:0;}
+		24% {opacity:1;}
+    100% {opacity:1;}
+}
+/*splashAnim*/
+@-webkit-keyframes splashAnim {
+		0% {opacity:0;-webkit-transform: scale(1.04)}
+		18% {opacity:0;-webkit-transform: scale(1.04)}
+		24% {opacity:1;-webkit-transform: scale(1.0.3)}
+		50% {opacity:1;-webkit-transform: scale(1)}
+		55% {opacity:0;-webkit-transform: scale(1)}
+    100% {opacity:0;-webkit-transform: scale(1)}
+}
+@-moz-keyframes splashAnim {
+		0% {opacity:0;-moz-transform: scale(1.04)}
+		18% {opacity:0;-moz-transform: scale(1.04)}
+		24% {opacity:1;-moz-transform: scale(1.03)}
+		50% {opacity:1;-moz-transform: scale(1)}
+		55% {opacity:0;-moz-transform: scale(1)}
+    100% {opacity:0;-moz-transform: scale(1)}
+}
+@keyframes splashAnim {
+		0% {opacity:0;transform: scale(1.04)}
+		18% {opacity:0;transform: scale(1.04)}
+		24% {opacity:1;transform: scale(1.03)}
+		50% {opacity:1;transform: scale(1)}
+		55% {opacity:0;transform: scale(1)}
+    100% {opacity:0;transform: scale(1)}
+}
+/*lastFrameAnim*/
+@-webkit-keyframes lastFrameAnim {
+		0% {opacity:0;-webkit-transform: scale(1.04)}
+		54% {opacity:0;-webkit-transform: scale(1.04)}
+		61% {opacity:1;-webkit-transform: scale(1.04)}
+    100% {opacity:1;-webkit-transform: scale(1)}
+}
+@-moz-keyframes lastFrameAnim {
+		0% {opacity:0;-moz-transform: scale(1.04)}
+		54% {opacity:0;-moz-transform: scale(1.04)}
+		61% {opacity:1;-moz-transform: scale(1.04)}
+    100% {opacity:1;-moz-transform: scale(1)}
+}
+@keyframes lastFrameAnim {
+		0% {opacity:0;transform: scale(1.04)}
+		54% {opacity:0;transform: scale(1.04)}
+		61% {opacity:1;transform: scale(1.04)}
+    100% {opacity:1;transform: scale(1)}
+}
+/*logoBlackAnim*/
+@-webkit-keyframes logoBlackAnim {
+		0% {opacity:0;}
+		54% {opacity:0;}
+		61% {opacity:1;}
+    100% {opacity:1;}
+}
+@-moz-keyframes logoBlackAnim {
+		0% {opacity:0;}
+		54% {opacity:0;}
+		61% {opacity:1;}
+    100% {opacity:1;}
+}
+@keyframes logoBlackAnim {
+		0% {opacity:0;}
+		54% {opacity:0;}
+		61% {opacity:1;}
+    100% {opacity:1;}
+}
+/*hash1Anim*/
+@-webkit-keyframes hash1Anim {
+		0% {opacity:0;}
+		19% {opacity:0;}
+		27% {opacity:1;}
+		56% {opacity:1;}
+		61% {opacity:0;}
+    100% {opacity:0;}
+}
+@-moz-keyframes hash1Anim {
+		0% {opacity:0;}
+		19% {opacity:0;}
+		27% {opacity:1;}
+		56% {opacity:1;}
+		61% {opacity:0;}
+    100% {opacity:0;}
+}
+@keyframes hash1Anim {
+		0% {opacity:0;}
+		19% {opacity:0;}
+		27% {opacity:1;}
+		56% {opacity:1;}
+		61% {opacity:0;}
+    100% {opacity:0;}
+}
+/*hash2Anim*/
+@-webkit-keyframes hash2Anim {
+		0% {opacity:0;}
+		56% {opacity:0;}
+		61% {opacity:1;}
+    100% {opacity:1;}
+}
+@-moz-keyframes hash2Anim {
+		0% {opacity:0;}
+		56% {opacity:0;}
+		61% {opacity:1;}
+    100% {opacity:1;}
+}
+@keyframes hashAnim {
+		0% {opacity:0;}
+		56% {opacity:0;}
+		61% {opacity:1;}
+    100% {opacity:1;}
+}
+/*tagAnim*/
+@-webkit-keyframes tagAnim {
+		0% {opacity:0;-webkit-transform: translateY(9px);}
+		60% {opacity:0;-webkit-transform: translateY(9px);}
+		65% {opacity:1;-webkit-transform: translateY(0);}
+    100% {opacity:1;-webkit-transform: translateY(0);}
+}
+@-moz-keyframes tagAnim {
+		0% {opacity:0;-moz-transform: translateY(9px);}
+		60% {opacity:0;-moz-transform: translateY(9px);}
+		65% {opacity:1;-moz-transform: translateY(0);}
+    100% {opacity:1;-moz-transform: translateY(0);}
+}
+@keyframes tagAnim {
+		0% {opacity:0;transform: translateY(9px);}
+		60% {opacity:0;transform: translateY(9px);}
+		65% {opacity:1;transform: translateY(0);}
+    100% {opacity:1;transform: translateY(0);}
+}
+/*ctaAnim*/
+@-webkit-keyframes ctaAnim {
+		0% {opacity:0;-webkit-transform: translateY(9px);}
+		63% {opacity:0;-webkit-transform: translateY(9px);}
+		68% {opacity:1;-webkit-transform: translateY(0);}
+    100% {opacity:1;-webkit-transform: translateY(0);}
+}
+@-moz-keyframes ctaAnim {
+		0% {opacity:0;-moz-transform: translateY(9px);}
+		63% {opacity:0;-moz-transform: translateY(9px);}
+		68% {opacity:1;-moz-transform: translateY(0);}
+    100% {opacity:1;-moz-transform: translateY(0);}
+}
+@keyframes ctaAnim {
+		0% {opacity:0;transform: translateY(9px);}
+		63% {opacity:0;transform: translateY(9px);}
+		68% {opacity:1;transform: translateY(0);}
+    100% {opacity:1;transform: translateY(0);}
+}

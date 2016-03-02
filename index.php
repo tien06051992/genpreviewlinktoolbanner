@@ -1,103 +1,118 @@
-<?php
-class scanDir {
-    static private $directories, $files, $ext_filter, $recursive;
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
 
-// ----------------------------------------------------------------------------------------------
-    // scan(dirpath::string|array, extensions::string|array, recursive::true|false)
-    static public function scan(){
-        // Initialize defaults
-        self::$recursive = false;
-        self::$directories = array();
-        self::$files = array();
-        self::$ext_filter = false;
-
-        // Check we have minimum parameters
-        if(!$args = func_get_args()){
-            die("Must provide a path string or array of path strings");
-        }
-        if(gettype($args[0]) != "string" && gettype($args[0]) != "array"){
-            die("Must provide a path string or array of path strings");
-        }
-
-        // Check if recursive scan | default action: no sub-directories
-        if(isset($args[2]) && $args[2] == true){self::$recursive = true;}
-
-        // Was a filter on file extensions included? | default action: return all file types
-        if(isset($args[1])){
-            if(gettype($args[1]) == "array"){self::$ext_filter = array_map('strtolower', $args[1]);}
-            else
-            if(gettype($args[1]) == "string"){self::$ext_filter[] = strtolower($args[1]);}
-        }
-
-        // Grab path(s)
-        self::verifyPaths($args[0]);
-        return self::$files;
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+    body {
+        padding-top: 50px;
+        padding-bottom: 20px;
     }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
 
-    static private function verifyPaths($paths){
-        $path_errors = array();
-        if(gettype($paths) == "string"){$paths = array($paths);}
-
-        foreach($paths as $path){
-            if(is_dir($path)){
-                self::$directories[] = $path;
-                $dirContents = self::find_contents($path);
-            } else {
-                $path_errors[] = $path;
-            }
+<body>
+    <?php
+        function dirToArray($dir, $acceptExtension) { 
+           $result = array(); 
+           $cdir = scandir($dir); 
+           foreach ($cdir as $key => $value) 
+           { 
+              if (!in_array($value,array(".",".."))) 
+              { 
+                 if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) 
+                 {
+                    $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value, $acceptExtension); 
+                 } 
+                 else 
+                 { 
+                    $infoFile = new SplFileInfo($value);
+                    if(in_array($infoFile->getExtension(), $acceptExtension)) {
+                      $result[] = $value;
+                    }
+                 } 
+              } 
+           }           
+           return $result; 
         }
 
-        if($path_errors){echo "The following directories do not exists<br />";die(var_dump($path_errors));}
-    }
+        $dirs = 'tree';
+        $exts = array("html","swf","jpg");
+        $files = dirToArray($dirs, $exts);
 
-    // This is how we scan directories
-    static private function find_contents($dir){
-        $result = array();
-        $root = scandir($dir);
-        foreach($root as $value){
-            if($value === '.' || $value === '..') {continue;}
-            if(is_file($dir.DIRECTORY_SEPARATOR.$value)){
-                if(!self::$ext_filter || in_array(strtolower(pathinfo($dir.DIRECTORY_SEPARATOR.$value, PATHINFO_EXTENSION)), self::$ext_filter)){
-                    self::$files[] = $result[] = $dir.DIRECTORY_SEPARATOR.$value;
-                }
-                continue;
-            }
-            if(self::$recursive){
-                foreach(self::find_contents($dir.DIRECTORY_SEPARATOR.$value) as $value) {
-                    self::$files[] = $result[] = $value;
-                }
-            }
-        }
-        // Return required for recursive search
-        return $result;
-    }
-}
-?>
+    ?>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <?php
+                    echo "<pre>";
+                    print_r($files);
+                    echo "</pre>";
+                    reset($files);
+                    $first_key = key($files);
+                ?>
+            </div>
+            <div class="col-md-6">
+                <form class="form-horizontal" method="POST" action="tree/<?php echo $first_key ?>/preview.php">
+                  <input type="hidden" name="total" value="<?php print base64_encode(serialize($files))  ?>">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Banner's name:</label>
+                    <div class="col-sm-10">
+                      <input name="name-banner" type="text" class="form-control" id="inputEmail3" placeholder="Banner 's name" value="<?php echo $first_key; ?>">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">List concepts:</label>
+                    <div class="col-sm-10">
+                      <?php 
+                      foreach ($files[$first_key] as $key => $concept) {
+                        if(is_array($concept) && !empty($concept)) {
+                          echo "<input type='checkbox' name='concepts[]' checked value='$key'> " . $key . "<br>";
+                          foreach ($concept as $key2 => $banner) {
+                              if(is_numeric($key2)) {
+                                echo "<div class='col-md-offset-1'><input type='checkbox' name='concept-" . $key . "[]' value='$key2'> " . $banner . "<br></div>";
+                              }else {
+                                echo "<div class='col-md-offset-1'><input type='checkbox' name='concept-" . $key . "[]' value='$key2'> " . $key2 . "<br></div>";
+                              }    
+                          }
+                        }
+                      }
+                      ?>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+        </div>
+    
+        <footer>
+            <p>&copy; Company 2015</p>
+        </footer>
+    </div>
+    <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')
+    </script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
 
-<?php
-//Scan a single directory for all files, no sub-directories
-//$files = scanDir::scan('D:\Websites\temp');
-
-//Scan multiple directories for all files, no sub-dirs
-$dirs = array(
-    'tree'
-);
-$files = scanDir::scan($dirs);
-
-// Scan multiple directories for files with provided file extension,
-// no sub-dirs
-$files = scanDir::scan($dirs, "jpg");
-//or with an array of extensions
-$file_ext = array(
-    "html"
-);
-//$files = scanDir::scan($dirs, $file_ext);
-
-// Scan multiple directories for files with any extension,
-// include files in recursive sub-folders
-//$files = scanDir::scan($dirs, false, true);
-
-// Multiple dirs, with specified extensions, include sub-dir files
-$files = scanDir::scan($dirs, $file_ext, true);
-print_r(json_encode($files,JSON_PRETTY_PRINT));
-?>
+</html>
