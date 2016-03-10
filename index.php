@@ -18,6 +18,14 @@
         padding-top: 50px;
         padding-bottom: 20px;
     }
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      max-height: 100%;
+      width: auto;
+    }
     </style>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -50,12 +58,19 @@
         }
 
         $dirs = 'tree';
-        $exts = array("html","swf","jpg");
+        $exts = array("html","swf","jpg","gif");
         $files = dirToArray($dirs, $exts);
 
     ?>
     <div class="container-fluid">
         <div class="row">
+          <div class="col-md-12 logo">
+            <img src="img/logo.png" alt="">
+            <h1>PYCO PREVIEW TOOL</h1>
+          </div>
+        </div>
+        <div class="row">
+
             <div class="col-md-6">
                 <?php
                     echo "<pre>";

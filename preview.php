@@ -15,6 +15,8 @@
        preg_match_all('/([\d]+)/', $string, $match);
        return $match[0];
     }
+    // Start the buffering //
+    ob_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -155,7 +157,7 @@
                         <a class="button" onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</a>
                     </h2>
                     <?php $dimention = extract_numbers($banner); ?>
-                    <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $path_folder."/".$key."/".$banner ?>"></iframe>
+                    <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>"></iframe>
                     <hr>
                     <?php
                         } else {
@@ -164,7 +166,7 @@
                                 <a class="button" onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</a>
                             </h2>
                             <?php $dimention = extract_numbers($key2); ?>
-                            <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $path_folder."/".$key."/".$key2."/".$banner[0] ?>"></iframe>
+                            <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$key2."/".$banner[0] ?>"></iframe>
                             <hr>
                             <?php
                         }
@@ -178,3 +180,6 @@
 </body>
 
 </html>
+<?php 
+file_put_contents($banner_name .".html", ob_get_contents());
+?>
