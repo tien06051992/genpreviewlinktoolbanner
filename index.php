@@ -34,39 +34,45 @@
 
 <body>
     <?php
-        function dirToArray($dir, $acceptExtension) { 
+        function dirToArray($dir, $acceptExtension,$deep) { 
            $result = array(); 
-           $cdir = scandir($dir); 
+           $cdir = scandir($dir);
+           $temp = $deep;
            foreach ($cdir as $key => $value) 
-           { 
+           {
+              
               if (!in_array($value,array(".",".."))) 
               { 
                  if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) 
-                 {
-                    $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value, $acceptExtension); 
+                 {  
+                    $deep++;
+                    $result[$value.$temp] = dirToArray($dir . DIRECTORY_SEPARATOR . $value, $acceptExtension,$deep);
                  } 
                  else 
-                 { 
+                 {
+                    $temp;
                     $infoFile = new SplFileInfo($value);
+                    //if($deep == 3 && $infoFile->getExtension() == "jpg") continue;
                     if(in_array($infoFile->getExtension(), $acceptExtension)) {
-                      $result[] = $value;
+                      $result[] = $value . $temp;
                     }
-                 } 
-              } 
-           }           
+                 }
+              }
+           }     
            return $result; 
         }
 
         $dirs = 'tree';
         $exts = array("html","swf","jpg","gif");
-        $files = dirToArray($dirs, $exts);
+        $deep = 1;
+        $files = dirToArray($dirs, $exts, $deep);
 
     ?>
     <div class="container-fluid">
         <div class="row">
           <div class="col-md-12 logo">
             <img src="img/logo.png" alt="">
-            <h1>PYCO PREVIEW TOOL</h1>
+            <h1>PYCO PREVIEWLINK TOOL</h1>
           </div>
         </div>
         <div class="row">
