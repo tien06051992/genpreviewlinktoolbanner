@@ -45,26 +45,40 @@
               { 
                  if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) 
                  {  
-                    $deep++;
-                    $result[$value.$temp] = dirToArray($dir . DIRECTORY_SEPARATOR . $value, $acceptExtension,$deep);
+                    $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value, $acceptExtension,$temp."\\".$value);
                  } 
                  else 
                  {
+                    
                     $temp;
                     $infoFile = new SplFileInfo($value);
-                    //if($deep == 3 && $infoFile->getExtension() == "jpg") continue;
+                    if(isBanner($temp) && $infoFile->getExtension() == "jpg") continue;
                     if(in_array($infoFile->getExtension(), $acceptExtension)) {
-                      $result[] = $value . $temp;
+                      $result[] = $value;
                     }
+                    
                  }
               }
            }     
-           return $result; 
+           return $result;
+        }
+
+        function isBanner($folder) {
+          $tmpdir = scandir($folder);
+          $flag = false;
+          for($i = 0; $i < count($tmpdir); $i++) {
+            //echo $i;
+            $infoFileHtml = new SplFileInfo($tmpdir[$i]);
+            if($infoFileHtml->getExtension() == "html") {
+              $flag = true;
+            }
+          }
+          return $flag;
         }
 
         $dirs = 'tree';
         $exts = array("html","swf","jpg","gif");
-        $deep = 1;
+        $deep = 'tree';
         $files = dirToArray($dirs, $exts, $deep);
 
     ?>
