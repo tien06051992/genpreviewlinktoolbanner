@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Juicy 300x250</title>
+
+
+    <style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+    }
+    #container {
+        width: 300px;
+        height: 250px;
+        position: relative;
+        background: #fff;
+        border: solid 1px #ccc;
+        overflow: hidden;
+        background: url("bg.jpg") no-repeat;
+        cursor: pointer;
+    }
+    #container img,
+    #container div {
+        position: absolute;
+    }
+
+    #bg,#logo {
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    #main-logo {
+        top: 0;
+        left: 0;
+    }
+
+    #group-lipstick,#cta {
+        bottom: 0;
+        left: 0;
+        opacity: 0;
+        transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        transform: scale(0.3);
+    }
+	#lipstick_small{
+		bottom: 0;
+		left: 0;
+        opacity: 0;
+        transform-origin: 50% 50%;
+        transform-origin: 50% 50%;}
+
+    #lipstick {
+        top: 55px;
+        left: 53px;
+        transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        opacity: 0;
+    }
+
+    #wrap-cta {
+        width: 124px;
+		height: 36px;
+		overflow: hidden;
+		position: absolute;
+		bottom: 14px;
+		left: 88px;
+    }
+
+    #shine {
+        position: absolute;
+        top: 0;
+        left: -100%;
+    }
+
+    #bg-exit {
+        background-color: rgba(255, 255, 255, 0);
+        cursor: pointer;
+        height: 250px;
+        left: 0px;
+        position: absolute;
+        top: 0px;
+        width: 300px;
+        z-index: 1000;
+    }
+    </style>
+
+
+    <script src="https://s0.2mdn.net/ads/studio/Enabler.js"> </script>
+
+    <script>!function(n){n.preloadImages=function(n,o){window.IMAGES_CACHE={};var e,t,i=n.length;if(0===n.length)return void(o&&"function"==typeof o&&o());for(;e=n.pop();)t=new Image,t.onload=function(n){console.log("Loading image: ",n),window.IMAGES_CACHE[n]=this,i--,0===i&&(console.log("All images are ready..."),o&&"function"==typeof o&&o())}.bind(t,e),t.src=e},n.loadScripts=function(n,o){var e,t,i=n.length;if(0===n.length)return void(o&&"function"==typeof o&&o());for(;e=n.pop();)t=document.createElement("script"),t.defer=!0,t.onload=function(){i--,0===i&&(console.log("All scripts are ready..."),o&&"function"==typeof o&&o())},t.src=e,document.getElementsByTagName("head")[0].appendChild(t)}}(window);</script>
+
+
+    <script>
+        window.onload = function() {
+            loadScripts([
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TimelineLite.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/plugins/CSSPlugin.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/easing/EasePack.min.js',
+            ], loadAssets);
+        };
+
+        function loadAssets() {
+            preloadImages([
+                'bg.jpg',
+                'logo.png',
+                'group-lipstick.png',
+				'lipstick_small.png',				
+                'lipstick.png',
+                'cta.png',
+                'shine.png'
+            ], timeline);
+        }
+
+        function timeline() {
+
+            var masterTimeline = new TimelineLite();
+
+            var delay = 0.5;
+            // animate for board
+            masterTimeline.add(TweenLite.to("#lipstick", 0.5, {opacity: 1}), delay);
+            delay += 0.5;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10,scale: 0.9}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10,scale: 0.85}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10,scale: 0.80}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10,scale: 0.75}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10,scale: 0.7}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10,scale: 0.65}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10,scale: 0.6}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10,scale: 0.55}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation:-10,scale: 0.5}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {rotation: 10,scale: 0.5}), delay);
+            delay += 0.06;
+            masterTimeline.add(TweenLite.to("#lipstick", 0.06, {opacity: 0, rotation: -10,scale: 0.5}), delay);
+			masterTimeline.add(TweenLite.to(["#lipstick_small"], 0.06, {opacity: 1}), delay);
+            delay += 0.05;
+            masterTimeline.add(TweenLite.to(["#group-lipstick","#cta","#logo"], 0.5, {opacity: 1,scale: 1,ease: Elastic.easeOut.config(0.5, 0.5), y: 0}), delay);
+            delay += 1.25;
+            // masterTimeline.add(TweenLite.to("#shine", 0.5, {left: "100%"}), delay);
+            //masterTimeline.add(TweenLite.to("#lipstick", 0.5, {rotation: 7, ease: Elastic.easeOut.config(0.5, 0.5), y: 0}), delay+0.5);
+            masterTimeline.add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 10 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -10 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 8 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -8 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 6 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -6 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 4 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -4 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 2 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -2 }), delay += 0.05)
+                          .add(TweenLite.to("#cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 0 }), delay += 0.05);
+            
+
+            //For testing
+            // masterTimeline.seek(10); //6.7 frame Prix, 10.5 lastframe
+            // masterTimeline.pause();
+        }
+    </script>
+</head>
+<body>
+<div id="bg-exit"></div>
+    <div id="container">
+        <img id="main-logo" src="main-logo.png" alt="">
+        <img id="logo" src="logo.png" alt="">
+        <img id="group-lipstick" src="group-lipstick.png" alt="">
+        <img id="lipstick_small" src="lipstick_small.png" alt="">
+        <img id="lipstick" src="lipstick.png" alt="">
+        <img id="cta" src="cta.png" alt="">
+        <div id="wrap-cta">
+            <!--<img id="shine" src="shine.png" alt="">-->
+        </div>
+
+    </div>
+    <!-- CTA -->
+    <script>
+    function bgExitHandler(e) {
+      Enabler.exit('Background Exit');
+    }
+    
+    document.getElementById('bg-exit').addEventListener('click', bgExitHandler, false);
+    </script>
+  <!-- end CTA -->
+</body>
+</html>

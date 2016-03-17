@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <title>Expand Composition</title>
+    <script type="text/javascript" src="https://s0.2mdn.net/ads/studio/Enabler.js"></script>
+
+    <!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="edge_includes/edge.6.0.0.min.js"></script>
+    <style>
+        .edgeLoad-collapse, .edgeLoad-expand {
+            visibility: hidden;
+        }
+
+        .expand, .collapse {
+            position: absolute !important;
+            top: 0;
+            left:400px;
+            overflow: hidden;
+        }
+        .collapse {
+            background-image: url('images/bg_loader.jpg');
+        }
+
+        #remarketing-pixel {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+        }
+        /* add 1  start */
+        #mask-collapse {
+            width: 1000px;
+            height: 180px;/* height default 250-40=210px */
+            top: 40px;/* top default 250-210 = 40px */
+            position: absolute;
+            cursor: pointer;
+            z-index: 9999;
+            display: none;
+        }
+        /*  add 1  end */
+    </style>
+    <script>
+
+        var collapseLoaded = false;
+        var expandLoaded = false;
+        var expanded = false;
+
+        AdobeEdge.bootstrapCallback(function (compId)
+        {
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function (event)
+        {
+
+            if (Enabler.isInitialized())
+                enablerInitHandler();
+            else
+                Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+
+            function enablerInitHandler()
+            {
+                    Enabler.loadModule(studio.module.ModuleId.VIDEO, videoModuleHandler);
+            }
+
+            function videoModuleHandler()
+            {
+                if (!Enabler.isVisible())
+                    Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, start);
+                else
+                    start();
+            }
+        });
+
+        function start()
+        {
+            AdobeEdge.loadComposition("collapse","collapse",{
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "1000px",
+    height: "220px"
+}, {
+    dom: [
+        {
+            id: 'bg_loader',
+            type: 'image',
+            tag: 'img',
+            rect: ['0px', '0px', '1000px', '220px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/bg_loader.jpg','0px','0px']
+        },
+        {
+            id: 'logo_dior_video2',
+            type: 'image',
+            tag: 'img',
+            rect: ['61px', '38px', '119px', '48px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/logo_dior_video.png','0px','0px']
+        },
+        {
+            id: 'logo_poison2',
+            type: 'image',
+            tag: 'img',
+            rect: ['42px', '92px', '157px', '101px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/logo_poison_video.png','0px','0px']
+        },
+        {
+            id: 'loader2',
+            type: 'image',
+            tag: 'img',
+            rect: ['486px', '113px', '35px', '5px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/loader.gif','0px','0px']
+        }
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '1000px', '220px']
+        }
+    }
+}, {
+    dom: [
+
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '1020px', '250px']
+        }
+    }
+});
+
+             // add 2 start 
+            document.getElementById('mask-collapse').addEventListener('mouseover', collapseHover);
+            document.getElementById('expand').addEventListener('click', expandClick);
+            document.getElementById('expand').addEventListener('mouseleave', requestCollapse);
+            document.getElementById('collapse').addEventListener('click', collapseClick);
+            // add 2 end 
+
+            Enabler.addEventListener(studio.events.StudioEvent.EXPAND_START, expandStart, false);
+            Enabler.addEventListener(studio.events.StudioEvent.EXPAND_FINISH, expandFinish, false);
+            Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_START, collapseStart, false);
+            Enabler.addEventListener(studio.events.StudioEvent.COLLAPSE_FINISH, collapseFinish, false);
+            Enabler.addEventListener(studio.events.StudioEvent.EXIT, exit, false);
+            Enabler.setExpandingPixelOffsets(0, 0, 1000, 500);
+        }
+
+        // add 3 start 
+        function collapseHoverToExp() {
+            document.getElementById('mask-collapse').style.display = 'block';
+        }
+        // add 3 end 
+
+        // add 4 start
+        function collapseHover() {
+            requestExpand();
+            document.getElementById('mask-collapse').style.display = 'none';
+        }
+        function collapseClick() {
+            requestExpand();
+            requestExit();
+            document.getElementById('mask-collapse').style.display = 'none';
+        }
+        // add 4 end
+
+        function expandClick()
+        {
+            requestExit();
+        }
+
+        function requestExpand()
+        {
+            if (expanded || !('controller' in AdobeEdge.getComposition('collapse')))
+                return;
+
+            Enabler.requestExpand();
+        }
+
+        function requestCollapse()
+        {
+            if (!expanded)
+                return;
+
+            Enabler.requestCollapse();
+        }
+
+        function requestExit()
+        {
+            Enabler.exit('Exit_Click');
+        }
+
+        function requestClose()
+        {
+            if (expanded)
+                AdobeEdge.getComposition(expanded ? 'expand' : 'collapse').controller.freeze();
+
+            Enabler.reportManualClose();
+
+            requestCollapse();
+        }
+
+        function expandStart()
+        {
+            if (!expandLoaded)
+            {
+                expandLoaded = true;
+
+                AdobeEdge.loadComposition("expand","expand",{
+    scaleToFit: "none",
+    centerStage: "none",
+    minW: "0px",
+    maxW: "undefined",
+    width: "1000px",
+    height: "500px"
+}, {
+    dom: [
+        {
+            id: 'bg_endcard',
+            type: 'image',
+            tag: 'img',
+            rect: ['0px', '0px', '1000px', '220px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/bg_endcard.jpg','0px','0px']
+        },
+        {
+            id: 'loader2',
+            type: 'image',
+            tag: 'img',
+            rect: ['785px', '155px', '35px', '5px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/loader.gif','0px','0px']
+        },
+        {
+            id: 'thenewfragrance',
+            type: 'image',
+            tag: 'img',
+            rect: ['182px', '200px', '139px', '8px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/thenewfragrance.png','0px','0px']
+        },
+        {
+            id: 'packshot',
+            type: 'image',
+            tag: 'img',
+            rect: ['211px', '68px', '90px', '132px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/packshot.png','0px','0px']
+        },
+        {
+            id: 'logo_poison',
+            type: 'image',
+            tag: 'img',
+            rect: ['683px', '38px', '192px', '123px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/logo_poison.png','0px','0px']
+        },
+        {
+            id: 'logo_dior_endcard',
+            type: 'image',
+            tag: 'img',
+            rect: ['201px', '16px', '100px', '40px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/logo_dior_endcard.png','0px','0px']
+        },
+        {
+            id: 'cta_bg',
+            type: 'image',
+            tag: 'img',
+            rect: ['683px', '178px', '192px', '29px', 'auto', 'auto'],
+            fill: ["rgba(0,0,0,0)",'images/cta.png','0px','0px']
+        }
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '1000px', '500px']
+        }
+    }
+}, {
+    dom: [
+
+    ],
+    style: {
+        '${symbolSelector}': {
+            isStage: true,
+            rect: [undefined, undefined, '1020px', '500px']
+        }
+    }
+});
+            }
+            else
+            {
+                AdobeEdge.getComposition('expand').controller.rePlay();
+            }
+
+            AdobeEdge.getComposition('collapse').controller.freeze();
+            document.getElementById('collapse').style.display = 'none';
+            document.getElementById('expand').style.display = 'block';
+
+            Enabler.finishExpand();
+        }
+
+        function expandFinish()
+        {
+            expanded = true;
+        }
+
+        function collapseStart()
+        {
+            try
+            {
+                document.getElementById('expand').style.display = 'none';
+                document.getElementById('collapse').style.display = 'block';
+
+                var controller = AdobeEdge.getComposition('expand').controller;
+                if ('collapseStart' in controller)
+                    controller.collapseStart();
+            }
+            catch (error)
+            {
+
+            }
+
+            Enabler.finishCollapse();
+        }
+
+        function collapseFinish()
+        {
+            expanded = false;
+        }
+
+        // add 5 start
+        function exit()
+        {
+            // requestCollapse();
+        }
+        // add 5 end
+
+    </script>
+    <!--Adobe Edge Runtime End-->
+
+</head>
+<body style="margin:0;padding:0;background: url('Skin_ELLE_1800x1000.jpg') no-repeat;">
+<img id="remarketing-pixel"/>
+
+<div id="collapse" class="collapse">
+</div>
+<div id="expand" class="expand">
+</div>
+<!-- add 6 start -->
+<div id="mask-collapse">
+</div>
+<!-- add 6 end -->
+</body>
+</html>

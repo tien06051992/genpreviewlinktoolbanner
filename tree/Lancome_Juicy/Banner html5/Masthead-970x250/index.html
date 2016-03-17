@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Juicy 970x250 Video</title>
+    <style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+    }
+    #container {
+        width: 970px;
+        height: 250px;
+        position: relative;
+        background: #fff;
+        border: solid 1px #ccc;
+        overflow: hidden;
+        background: url("bg.jpg") no-repeat;
+    }
+    #container img,
+    #container div {
+        position: absolute;
+    }
+
+    #bg,#logo {
+        top: 0;
+        left: 0;
+    }
+
+    #group-lipstick {
+        bottom: 0px;
+        left: 0;
+        height: 200px;
+    }
+
+    #cta {
+        top: 0;
+        left: 0;
+    }
+
+    #wrap-cta {
+        width: 132px;
+		height: 36px;
+		overflow: hidden;
+		position: absolute;
+		bottom: 11px;
+        right: 45px;
+    }
+
+    #shine {
+        position: absolute;
+        top: 0;
+        left: -100%;
+    }
+
+    #video {
+        position: absolute;
+        top: 18px;
+        left: 17px;
+    }
+
+    .controls {
+        width: 100%;
+        top: 196px;
+        left: 18px;
+        z-index: 11;
+    }
+
+    #clickTag {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        cursor: pointer;
+    }
+
+    .play-btn {
+        position: absolute;
+        left: 5px;
+        width: 31px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    .sound-btn {
+        position: absolute;
+        left: 40px;
+        width: 31px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    #bg-exit {
+        background-color: rgba(255, 255, 255, 0);
+        cursor: pointer;
+        height: 250px;
+        left: 0px;
+        position: absolute;
+        top: 0px;
+        width: 970px;
+        z-index: 10;
+    }
+    
+    </style>
+
+
+    <script src="https://s0.2mdn.net/ads/studio/Enabler.js"> </script>
+
+    <script>!function(n){n.preloadImages=function(n,o){window.IMAGES_CACHE={};var e,t,i=n.length;if(0===n.length)return void(o&&"function"==typeof o&&o());for(;e=n.pop();)t=new Image,t.onload=function(n){console.log("Loading image: ",n),window.IMAGES_CACHE[n]=this,i--,0===i&&(console.log("All images are ready..."),o&&"function"==typeof o&&o())}.bind(t,e),t.src=e},n.loadScripts=function(n,o){var e,t,i=n.length;if(0===n.length)return void(o&&"function"==typeof o&&o());for(;e=n.pop();)t=document.createElement("script"),t.defer=!0,t.onload=function(){i--,0===i&&(console.log("All scripts are ready..."),o&&"function"==typeof o&&o())},t.src=e,document.getElementsByTagName("head")[0].appendChild(t)}}(window);</script>
+
+
+    <script>
+        window.onload = function() {
+            loadScripts([
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TimelineLite.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/plugins/CSSPlugin.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/easing/EasePack.min.js'
+            ], loadAssets);
+        };
+
+        function loadAssets() {
+            preloadImages([
+                'bg.jpg',
+                'logo.png',
+                'cta.png',
+                'pause.png',
+                'play.png',
+                'sound-off.png',
+                'sound-on.png',
+                'replay.png',
+            ], timeline);
+        }
+
+        function timeline() {
+            startAd();
+            var masterTimeline = new TimelineLite({onComplete:function() {
+                    setTimeout(function() {
+                        masterTimeline.restart();
+                    },4000)
+                }
+            });
+
+            var delay = 0.5;
+            // animate for board
+            
+            // masterTimeline.add(TweenLite.to("#shine", 0.5, {left: "100%"}), delay);
+            //masterTimeline.add(TweenLite.to("#lipstick", 0.5, {rotation: 7, ease: Elastic.easeOut.config(0.5, 0.5), y: 0}), delay+0.5);
+                masterTimeline.add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 10 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -10 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 8 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -8 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 6 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -6 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 4 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -4 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 2 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: -2 }), delay += 0.05)
+              .add(TweenLite.to("#wrap-cta", 0.05, { ease: Elastic.easeOut.config(1, 0.3), rotation: 0 }), delay += 0.05);
+
+            //For testing
+            // masterTimeline.seek(15); //6.7 frame Prix, 10.5 lastframe
+            // masterTimeline.pause();
+        }
+
+        function startAd() {
+            playPauseBtn = document.querySelector(".play-btn");
+            soundBtn = document.querySelector(".sound-btn");
+            imgPlay = document.querySelector(".play-img");
+            imgPause = document.querySelector(".pause-img");
+            imgReplay = document.querySelector(".replay-img");
+            imgSoundOn = document.querySelector(".sound-on-img");
+            imgSoundOff = document.querySelector(".sound-off-img");
+            videoContainer = document.querySelector(".video-container");
+            controls = document.querySelector(".controls");
+            video1 = document.querySelector("#video");
+            video1.play();
+            controls.style.visibility = "visible";
+            tooglePlayIcons();
+            toogleSoundIcons();
+            addListeners();
+
+            video1.onended = function() {
+                replayVideo();
+                soundBtn.style.opacity = "0";
+            };
+        }
+
+        // // ---------Play|Pause|Replay controls----------------------------------------------------------
+        function tooglePlayIcons() {
+            if (!video1.paused) {
+                imgPlay.style.opacity = 0;
+                imgPause.style.opacity = 1;
+                imgReplay.style.opacity = 0;
+                imgReplay.style.zIndex = "initial";
+            } else {
+                imgPlay.style.opacity = 1;
+                imgPause.style.opacity = 0;
+                imgReplay.style.opacity = 0;
+                imgReplay.style.zIndex = "initial";
+            }
+        }
+
+        function tooglePlayPause() {
+            if (!video1.paused) {
+                video1.pause();
+            } else {
+                video1.play();
+            }
+            tooglePlayIcons();
+            soundBtn.style.opacity = "1";
+        }
+
+        function replayVideo() {
+            imgPlay.style.opacity = 0;
+            imgPause.style.opacity = 0;
+            imgReplay.style.opacity = 1;
+            imgReplay.style.zIndex="99";
+            //video1.currentTime=0;
+            //startAd();
+        }
+
+        // // ---------Video controls----------------------------------------------------------
+        function toogleSoundIcons() {
+            if (!video1.muted) {
+                imgSoundOn.style.opacity = 0;
+                imgSoundOff.style.opacity = 1;
+            } else {
+                imgSoundOn.style.opacity = 1;
+                imgSoundOff.style.opacity = 0;
+            }
+        }
+
+        function toogleSound() {
+            if (!video1.muted) {
+                video1.muted = true;
+            } else {
+                video1.muted = false;
+            }
+            toogleSoundIcons();
+        }
+
+        function replayAd(e){
+            video1.currentTime=0;
+            endFrame.style.opacity=0;
+            soundBtn.style.opacity = "1";
+            preload();
+            e.stopPropagation();
+            return false;
+        }
+
+        function addListeners() {
+            soundBtn.addEventListener("click", toogleSound, false);
+            imgReplay.addEventListener("click", replayAd, true);
+            playPauseBtn.addEventListener("click", tooglePlayPause, false);
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <img id="logo" src="logo.png" alt="">
+        <video id="video" width="383" muted>
+          <source src="video.mp4" type="video/mp4">
+        </video> 
+        <div id="wrap-cta">
+            <img id="cta" src="cta.png" alt="">
+        </div>
+
+        <div class="controls">
+            <div class="play-btn">
+                <img class="replay-img" src="replay.png">
+                <img class="play-img" src="play.png">
+                <img class="pause-img" src="pause.png">
+            </div>
+            <div class="sound-btn">
+                <img class="sound-on-img" src="sound-on.png">
+                <img class="sound-off-img" src="sound-off.png">
+            </div>
+        </div>
+        <div id="bg-exit"></div>
+    </div>
+    <!-- CTA -->
+    <script>
+    function bgExitHandler(e) {
+      Enabler.exit('Background Exit');
+    }
+    
+    document.getElementById('bg-exit').addEventListener('click', bgExitHandler, false);
+    </script>
+  <!-- end CTA -->
+</body>
+</html>
