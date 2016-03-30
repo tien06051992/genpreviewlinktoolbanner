@@ -54,7 +54,7 @@
                     $infoFile = new SplFileInfo($value);
                     if(isBanner($temp) && $infoFile->getExtension() == "jpg") continue;
                     if(in_array($infoFile->getExtension(), $acceptExtension)) {
-                      $result[] = $value . $temp;
+                      $result[] = $value;
                     }  
                  }
               }
