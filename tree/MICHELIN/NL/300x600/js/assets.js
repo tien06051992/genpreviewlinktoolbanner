@@ -1,0 +1,2 @@
+// DO NOT MODIFY : This file is updated automatically
+module.exports = ["images/backup.jpg","images/cta.png","images/endshot.jpg","images/endshot_anim.gif","images/endshot_texts.png","images/endshot_texts_blurred.png","images/img_biborg_loading.png","images/logo.png","images/mute_button.png","images/puce_cta.png","images/restart.png","images/video_texts.png"];

@@ -52,7 +52,11 @@
                     
                     $temp;
                     $infoFile = new SplFileInfo($value);
-                    if(isBanner($temp) && $infoFile->getExtension() == "jpg") continue;
+                    if((isBanner($temp) && $infoFile->getExtension() == "jpg") || 
+                      (isBanner($temp) && $infoFile->getExtension() == "mp4") ||
+                      (isBanner($temp) && $infoFile->getExtension() == "gif") ||
+                      (isBanner($temp) && $infoFile->getExtension() == "png")
+                      ) continue;
                     if(in_array($infoFile->getExtension(), $acceptExtension)) {
                       $result[] = $value;
                     }  
@@ -76,7 +80,7 @@
         }
 
         $dirs = 'tree';
-        $exts = array("html","swf","jpg","gif");
+        $exts = array("html","swf","jpg","gif","mp4","png");
         $deep = 'tree';
         $files = dirToArray($dirs, $exts, $deep);
 

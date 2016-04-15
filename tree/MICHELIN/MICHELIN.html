@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>MICHELIN</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            font-size: 14px;
+            font-family: "Roboto", sans-serif;
+        }
+        
+        #container {
+            padding: 0 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-weight: 300;
+            font-size: 32px;
+            padding: 20px 0;
+        }
+        
+        .section-title {
+            font-weight: 300;
+            font-size: 28px;
+            padding: 10px 0;
+        }
+        
+        a {
+            transition: all 0.5s linear;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+        
+        .button {
+            font-weight: 300;
+            text-align: center;
+            display: inline-block;
+            padding: 10px 20px;
+            border: solid 1px #D4D4D4;
+            border-radius: 5px;
+            color: #CCCCCC;
+            font-size: 18px;
+            background: #FFFFFF;
+            cursor: pointer;
+            margin-bottom: 3px;
+        }
+        
+        .button:hover,
+        .button:active {
+            color: #363636;
+        }
+        
+        .button:active {
+            box-shadow: inset 0 0 3px #DDDDDD;
+        }
+        
+        .fixed-corner {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        
+        hr {
+            border-top: solid 1px #DDDDDD;
+            border-bottom: none;
+            margin: 15px 0;
+        }
+        
+        iframe {
+            border: solid 1px #DDDDDD;
+        }
+        
+        img {
+            border: solid 1px #DDDDDD;
+        }
+        
+        h2 .button {
+            padding: 5px 10px;
+            vertical-align: bottom;
+        }
+        
+        #links strong {
+            display: inline-block;
+            min-width: 100px;
+        }
+
+    </style>
+    <script type="application/javascript">
+        function reloadIframe(id) {
+            var src = document.getElementById(id).src;
+            document.getElementById(id).src = src;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <h1 class="page-title">MICHELIN</h1>
+        <section id="links">
+            <h2 class="section-title">Quick links</h2>
+            <strong>BE</strong><a href='#BE-300x250' class='button'>300x250</a>
+<a href='#BE-300x600' class='button'>300x600</a>
+<a href='#BE-728x90' class='button'>728x90</a>
+<br><br><strong>ES</strong><a href='#ES-300x250' class='button'>300x250</a>
+<a href='#ES-300x600' class='button'>300x600</a>
+<a href='#ES-728x90' class='button'>728x90</a>
+<br><br><strong>NL</strong><a href='#NL-300x250' class='button'>300x250</a>
+<a href='#NL-300x600' class='button'>300x600</a>
+<a href='#NL-728x90' class='button'>728x90</a>
+<br><br><strong>Video</strong><a href='#Video-0' class='button'>448x250.mp4</a>
+<a href='#Video-Masthead-1000x250' class='button'>Masthead-1000x250</a>
+<br><br>        </section>
+        <hr>
+        <section id='BE'>                            <h2 class="section-title" id="BE-300x250">300x250                                <a class="button" onclick="reloadIframe('iBE-300x250')">Reload</a>
+                            </h2>
+                                                        <iframe id="iBE-300x250" scrolling="no" width="302" height="252" src="BE/300x250/Michelin_300x250_P2.html"></iframe>
+                            <hr>
+                                                        <h2 class="section-title" id="BE-300x600">300x600                                <a class="button" onclick="reloadIframe('iBE-300x600')">Reload</a>
+                            </h2>
+                                                        <iframe id="iBE-300x600" scrolling="no" width="302" height="602" src="BE/300x600/Michelin_300x600_P2.html"></iframe>
+                            <hr>
+                                                        <h2 class="section-title" id="BE-728x90">728x90                                <a class="button" onclick="reloadIframe('iBE-728x90')">Reload</a>
+                            </h2>
+                                                        <iframe id="iBE-728x90" scrolling="no" width="730" height="92" src="BE/728x90/Michelin_728x90_P2.html"></iframe>
+                            <hr>
+                            </section><section id='ES'>                            <h2 class="section-title" id="ES-300x250">300x250                                <a class="button" onclick="reloadIframe('iES-300x250')">Reload</a>
+                            </h2>
+                                                        <iframe id="iES-300x250" scrolling="no" width="302" height="252" src="ES/300x250/index.html"></iframe>
+                            <hr>
+                                                        <h2 class="section-title" id="ES-300x600">300x600                                <a class="button" onclick="reloadIframe('iES-300x600')">Reload</a>
+                            </h2>
+                                                        <iframe id="iES-300x600" scrolling="no" width="302" height="602" src="ES/300x600/index.html"></iframe>
+                            <hr>
+                                                        <h2 class="section-title" id="ES-728x90">728x90                                <a class="button" onclick="reloadIframe('iES-728x90')">Reload</a>
+                            </h2>
+                                                        <iframe id="iES-728x90" scrolling="no" width="730" height="92" src="ES/728x90/index.html"></iframe>
+                            <hr>
+                            </section><section id='NL'>                            <h2 class="section-title" id="NL-300x250">300x250                                <a class="button" onclick="reloadIframe('iNL-300x250')">Reload</a>
+                            </h2>
+                                                        <iframe id="iNL-300x250" scrolling="no" width="302" height="252" src="NL/300x250/index.html"></iframe>
+                            <hr>
+                                                        <h2 class="section-title" id="NL-300x600">300x600                                <a class="button" onclick="reloadIframe('iNL-300x600')">Reload</a>
+                            </h2>
+                                                        <iframe id="iNL-300x600" scrolling="no" width="302" height="602" src="NL/300x600/index.html"></iframe>
+                            <hr>
+                                                        <h2 class="section-title" id="NL-728x90">728x90                                <a class="button" onclick="reloadIframe('iNL-728x90')">Reload</a>
+                            </h2>
+                                                        <iframe id="iNL-728x90" scrolling="no" width="730" height="92" src="NL/728x90/index.html"></iframe>
+                            <hr>
+                            </section><section id='Video'>                            <h2 class="section-title" id="Video-0">448x250.mp4                                <a class="button" onclick="reloadIframe('iVideo-0')">Reload</a>
+                            </h2>
+                                                                <iframe id="iVideo-0" scrolling="no" width="450" height="252" src="Video/448x250.mp4"></iframe>
+                                                            <hr>
+                                                <h2 class="section-title" id="Video-Masthead-1000x250">Masthead-1000x250                                <a class="button" onclick="reloadIframe('iVideo-Masthead-1000x250')">Reload</a>
+                            </h2>
+                                                        <iframe id="iVideo-Masthead-1000x250" scrolling="no" width="1002" height="252" src="Video/Masthead-1000x250/index.html"></iframe>
+                            <hr>
+                            </section>    </div>
+    <a class="button fixed-corner" href="#">Top</a>
+</body>
+
+</html>
