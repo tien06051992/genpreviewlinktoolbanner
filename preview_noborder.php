@@ -134,11 +134,10 @@
 	                  	echo "<strong>$key</strong>" ;
 	                  	foreach ($concept as $key2 => $banner) {
                              if(is_numeric($key2)) {
-                                echo "<a href='#$key-$key2' class='button'>$banner</a>";
+                                echo "<a href='#$key-$key2' class='button'>$banner</a>\n";
                              }else {
-                                echo "<a href='#$key-$key2' class='button'>$key2</a>";
+                                echo "<a href='#$key-$key2' class='button'>$key2</a>\n";
                              }
-		                    
 		                }
 		                echo "<br><br>";
 	                }
@@ -153,12 +152,21 @@
                     foreach ($concept as $key2 => $banner) {
                         if(is_numeric($key2)) {
                     ?>
-                    <h2 class="section-title" id="<?php echo $key."-".$key2 ?>"><?php echo $banner ?>
-                        <a class="button" onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</a>
-                    </h2>
-                    <?php $dimention = extract_numbers($banner); ?>
-                    <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>" alt="">
-                    <hr>
+                            <h2 class="section-title" id="<?php echo $key."-".$key2 ?>"><?php echo $banner; ?>
+                                <a class="button" onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</a>
+                            </h2>
+                            <?php 
+                                $dimention = extract_numbers($banner);
+                                $arrayStaicImageBanner = array("jpg","gif","png");
+                                if(in_array(get_type_static_banner($banner),$arrayStaicImageBanner)) {
+                            ?>
+                            <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>" alt="">
+                            <?php 
+                                } else { ?>
+                                    <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>"></iframe>
+                                <?php }
+                            ?>
+                            <hr>
                     <?php
                         } else {
                             ?>
@@ -166,12 +174,11 @@
                                 <a class="button" onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</a>
                             </h2>
                             <?php $dimention = extract_numbers($key2); ?>
-                            <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]; ?>" height="<?php echo $dimention[1]; ?>" src="<?php echo $key."/".$key2."/".$banner[0] ?>"></iframe>
+                            <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$key2."/".$banner[0] ?>"></iframe>
                             <hr>
                             <?php
                         }
                     }
-
                     echo "</section>";
                 }
             }
@@ -181,6 +188,12 @@
 </body>
 
 </html>
-<?php 
+<?php
+
+function get_type_static_banner($banner) {
+    return substr($banner,-3);
+}
+
 file_put_contents($banner_name .".html", ob_get_contents());
+
 ?>
