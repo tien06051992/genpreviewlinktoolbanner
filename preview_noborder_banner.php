@@ -101,7 +101,7 @@
         }
         
         img {
-/*            border: solid 1px #DDDDDD;*/
+            border: solid 1px #DDDDDD;
         }
         
         h2 .button {
@@ -160,7 +160,7 @@
                                 $arrayStaicImageBanner = array("jpg","gif","png");
                                 if(in_array(get_type_static_banner($banner),$arrayStaicImageBanner)) {
                             ?>
-                            <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]?>" height="<?php echo $dimention[1]?>" src="<?php echo $key."/".$banner ?>" alt="">
+                            <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>" alt="">
                             <?php 
                                 } else { ?>
                                     <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>"></iframe>
