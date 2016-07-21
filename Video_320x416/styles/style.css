@@ -1,0 +1,359 @@
+button {
+	user-select: none;
+	cursor: pointer;
+	color: white;
+	border: none;
+	background-color: #0068ff;
+	outline: none;
+	height: 30px;
+	width: 110px;
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:hover {
+	color: white;
+}
+  
+button:active {
+	color: white;
+	font-size: 11px;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	color: white;
+	font-size: 12px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#container {
+	position: relative;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #bacae4;
+}
+
+.collapsed {
+	height: 48px;
+	width: 318px;
+}
+
+.expanded {
+	height: 100%;
+	width: 100%;
+	min-height: 320px;
+	min-width: 320px;
+}
+
+#collapsed-content {
+	height: 100%;
+	width: 100%;
+	background-size: auto 40%;
+	background-position: 10px 10px;
+	background-color: white;
+	background-repeat: no-repeat;
+}
+
+#expand-button {
+	margin: auto;
+	top: 0;
+	bottom: 0;
+}
+
+.label {
+	color: #0D2A4D;
+	font-size: 10px;
+	position: absolute;
+	margin-left: 10px;
+	top: 33px;
+}
+
+strong {
+	font-weight: bold;
+}
+
+#close-button {
+	width: 30px;
+	display: none;
+	z-index: 9;
+}
+
+.right-aligned {
+	position: absolute;
+	right: 10px;
+}
+
+.top-aligned {
+	position: absolute;
+	top: 10px;
+}
+
+.left-aligned {
+	position: absolute;
+	left: 10px;
+}
+
+.bottom-aligned {
+	position: absolute;
+	bottom: 10px;
+}
+
+.centered {
+	position: absolute;
+	margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+#creative-background {
+	max-height: 100%;
+	max-width: 100%;
+	background-color: #0d2a4d;
+	background-position: center center;
+}
+
+p {
+	margin: 10px;
+}
+
+#creative-foreground {
+	position: absolute;
+	background-color: white;
+	background-repeat: no-repeat;
+	background-position: 10px 10px;
+}
+
+#creative-foreground .label {
+	font-size: 14px;
+	top: 65px;
+}
+
+#video-container {
+	position: absolute;
+	height: 416px;
+	width: 320px;
+	visibility: hidden;
+}
+
+video {
+	height: 100%;
+	width: 100%;
+}
+
+.sdk-video-player {
+	height: 270px;
+	width: 416px;
+	position: relative;
+	background: url(../images/poster.jpg);
+	background-size: cover;
+}
+
+.sdk-video-player-button {
+	cursor:pointer;
+	position: absolute;
+	width:65px;
+	height:65px;
+	top:102px;
+	left:207px;
+	background: url("../images/play_video_button.png") no-repeat scroll 0px 0px;
+	background-size: cover;
+}
+
+#user-action-button {
+	display: none;
+}
+
+#endframe {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+}
+
+.controls {
+    width: 100%;
+    height: 40px;
+    bottom: 0px;
+    position: absolute;
+    left: 0;
+}
+
+.controls img {
+    position: absolute;
+    max-width: 100%;
+    width: 31px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.play-btn img {
+	position: absolute;
+	top: 0px;
+	right: 45px;
+}
+
+.pause-img {
+	display: none;
+}
+.play-img {
+	opacity: 0;
+	display: none;
+}
+.sound-off-img {
+	opacity: 0;
+}
+.replay-img {
+	right: 6px !important;
+	opacity: 0;
+}
+.sound-btn {
+	width: 34px;
+	height: 30px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+.sound-btn img {
+    position: absolute;
+    top: 0px;
+}
+
+#clickthrough-button {
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+/* CSS for small size */
+@media (max-width: 479px), (max-height: 479px) {
+	#creative-background {
+		height: 416px;
+		width: 320px;
+		background-size: 480px 480px;
+	}
+
+	#creative-foreground {
+		height: 416px;
+		width: 320px;
+	}
+
+	#video-container, #sdkVideoPlayer {
+		height: 416px;
+		width: 320px;
+	}
+	
+	.sdk-video-player-button {
+		width:65px;
+		height:65px;
+		top:44px;
+		left:102px;
+	}	
+}
+
+/* CSS for medium size */
+@media (max-height: 599px) and (min-width: 480px) and (min-height: 480px), (max-width: 599px) and (min-width: 480px) and (min-height: 480px) {
+	#creative-background {
+		height: 416px;
+		width: 320px;
+		background-size: 800px 800px;
+	}
+
+	#creative-foreground {
+		height: 416px;
+		width: 320px;
+	}
+
+	#video-container, #sdkVideoPlayer {
+		height: 416px;
+		width: 320px;
+	}
+	
+	.sdk-video-player-button {
+		width:65px;
+		height:65px;
+		top:69px;
+		left:147px;
+	}	
+}
+
+/* CSS for large size */
+@media (max-height: 767px) and (min-width: 600px) and (min-height: 600px), (max-width: 767px) and (min-width: 600px) and (min-height: 600px) {
+	#creative-background {
+		height: 416px;
+		width: 320px;
+		background-size: 1024px 1024px;
+	}
+
+	#creative-foreground {
+		height: 416px;
+		width: 320px;
+	}
+}
+
+/* CSS for maximum size */
+@media (min-width: 768px) and (min-height: 768px) {
+	#creative-background {
+		height: 416px;
+		width: 320px;
+		background-size: 1280px 1280px;
+	}
+
+	#creative-foreground {
+		height: 416px;
+		width: 320px;
+	}
+}
+
+/* CSS for adjusting content to fit when the screen is less then 320px tall. This may occur in landscape mode on some mobile phones. */
+@media (max-height: 320px) {
+	#creative-background {
+		height: 100%;
+	}
+
+	#creative-foreground {
+		height: 100%;
+	}
+
+	#container {
+		min-height: 0;
+	}
+
+	#creative-foreground {
+		background-size: auto 20px;
+	}
+	
+	#creative-foreground .label {
+		font-size: 10px;
+		top: 33px;
+	}
+}
+
+@media (max-height: 240px) {
+	#video-container, #sdkVideoPlayer {
+		height: 90px;
+		width: 160px;
+	}
+	
+	.sdk-video-player-button {
+		width:35px;
+		height:35px;
+		top:27px;
+		left:62px;
+	}	
+}
