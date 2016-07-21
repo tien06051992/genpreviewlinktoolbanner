@@ -115,77 +115,226 @@
             margin-right: 10px;
         }
 
-    </style>
-    <script type="application/javascript">
-        function reloadIframe(id) {
-            var src = document.getElementById(id).src;
-            document.getElementById(id).src = src;
+        /******* Updated 21/07/2016 *******/
+        
+        .wrap-iframe {
+            -webkit-transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -ms-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 20px;
         }
-    </script>
+        
+        .hide {
+            height: 0px !important;
+            padding-top: 0;
+        }
+        
+        #links h4 {
+            margin: 20px 0;
+        }
+        
+        .top-header {
+            height: 104px;
+            background: #000000;
+            border-bottom: 5px solid #a1a1a1;
+            padding: 29px 18px;
+        }
+        
+        .bottom-header {
+            padding: 0 18px;
+            background: #f2f2f2;
+            border-bottom: 1px solid #cccccc;
+        }
+        
+        .brand-logo {
+            border: none;
+            float: left;
+            height: 100%;
+            width: auto;
+        }
+        
+        .dp-logo {
+            float: right;
+            border: none;
+            height: 100%;
+            width: auto;
+        }
+        
+        .main ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main ul li {
+            border-bottom: 1px solid #cccccc;
+            padding: 20px 0;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .main ul li label {
+            font-size: 28px;
+            font-weight: 300;
+            margin-right: 8px;
+            float: left;
+        }
+        
+        .main ul li button {
+            padding: 5px 10px;
+            font-weight: 300;
+            text-align: center;
+            display: inline-block;
+            border: solid 1px #D4D4D4;
+            border-radius: 5px;
+            color: #CCCCCC;
+            font-size: 18px;
+            background: #FFFFFF;
+            cursor: pointer;
+            float: left;
+            margin-right: 11px;
+            min-width: 67px;
+        }
+
+    </style>
 </head>
 
 <body>
     <div id="container">
-        <h1 class="page-title"><?php echo $banner_name ?></h1>
-        <section id="links">
-            <h2 class="section-title">Quick links</h2>
-            <?php 
-              	foreach ($total[$first_key] as $key => $concept) {
-	                if(is_array($concept) && !empty($concept)) {
-	                  	echo "<strong>$key</strong>" ;
-	                  	foreach ($concept as $key2 => $banner) {
-                             if(is_numeric($key2)) {
-                                echo "<a href='#$key-$key2' class='button'>$banner</a>\n";
-                             }else {
-                                echo "<a href='#$key-$key2' class='button'>$key2</a>\n";
-                             }
-		                }
-		                echo "<br><br>";
-	                }
-             	}
-            ?>
-        </section>
-        <hr>
-        <?php 
-            foreach ($total[$first_key] as $key => $concept) {
-                if(is_array($concept) && !empty($concept)) {
-                    echo "<section id='$key'>" ;
-                    foreach ($concept as $key2 => $banner) {
-                        if(is_numeric($key2)) {
-                    ?>
-                            <h2 class="section-title" id="<?php echo $key."-".$key2 ?>"><?php echo $banner; ?>
-                                <a class="button" onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</a>
-                            </h2>
-                            <?php 
-                                $dimention = extract_numbers($banner);
-                                $arrayStaicImageBanner = array("jpg","gif","png");
-                                if(in_array(get_type_static_banner($banner),$arrayStaicImageBanner)) {
-                            ?>
-                            <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>" alt="">
-                            <?php 
-                                } else { ?>
-                                    <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>"></iframe>
-                                <?php }
-                            ?>
-                            <hr>
-                    <?php
-                        } else {
-                            ?>
-                            <h2 class="section-title" id="<?php echo $key."-".$key2 ?>"><?php echo $key2 ?>
-                                <a class="button" onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</a>
-                            </h2>
-                            <?php $dimention = extract_numbers($key2); ?>
-                            <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$key2."/".$banner[0] ?>"></iframe>
-                            <hr>
-                            <?php
+        <header>
+            <div class="top-header">
+                <img class="brand-logo" src="images/brand.png" alt="">
+                <img class="dp-logo" src="images/dp-logo.jpg" alt="">
+            </div>
+            <div class="bottom-header">
+                <h1 class="page-title"><?php echo $banner_name ?></h1>
+                <section id="links">
+                    <?php 
+                        foreach ($total[$first_key] as $key => $concept) {
+                            if(is_array($concept) && !empty($concept)) {
+                                echo "<h4>$key</h4>" ;
+                                foreach ($concept as $key2 => $banner) {
+                                     if(is_numeric($key2)) {
+                                        echo "<a href='#$key-$key2' class='button'>$banner</a>\n";
+                                     }else {
+                                        echo "<a href='#$key-$key2' class='button'>$key2</a>\n";
+                                     }
+                                }
+                                echo "<br><br>";
+                            }
                         }
-                    }
-                    echo "</section>";
-                }
-            }
-        ?>
+                    ?>
+                </section>
+            </div>
+        </header>
+        <div class="main">
+            <section id='Banners HTML5'>
+                <ul>
+                    <?php 
+                        foreach ($total[$first_key] as $key => $concept) {
+                            if(is_array($concept) && !empty($concept)) {
+                                echo "<section id='$key'>" ;
+                                foreach ($concept as $key2 => $banner) {
+                                    if(is_numeric($key2)) {
+                                ?>
+                                        <li>
+                                            <div class="title">
+                                                <label id="<?php echo $key."-".$key2 ?>"><?php echo $banner; ?></label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-<?php echo $key."-".$key2 ?>',this)">Open</button>
+                                                <button onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</button>
+                                            </div>
+                                            <?php 
+                                            $dimention = extract_numbers($banner);
+                                            $arrayStaicImageBanner = array("jpg","gif","png");
+                                            if(in_array(get_type_static_banner($banner),$arrayStaicImageBanner)) {
+                                            ?>
+                                            <div class="wrap-iframe hide" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px">
+                                            <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>" alt="">
+                                            </div>
+                                            <?php 
+                                                } else { ?>
+                                                    <div class="wrap-iframe hide" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px">
+                                                        <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$banner ?>"></iframe>
+                                                    </div>
+                                                <?php }
+                                            ?>
+                                                
+                                        </li>
+                                <?php
+                                    } else {
+                                        ?>
+                                        <li>
+                                            <div class="title">
+                                                <label id="<?php echo $key."-".$key2 ?>"><?php echo $key2; ?></label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-<?php echo $key."-".$key2 ?>',this)">Open</button>
+                                                <button onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</button>
+                                            </div>
+                                            <?php $dimention = extract_numbers($key2); ?>
+                                                <div class="wrap-iframe hide" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px">
+                                                    <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" src="<?php echo $key."/".$key2."/".$banner[0] ?>"></iframe>
+                                                </div>
+                                        </li>
+                                        <?php
+                                    }
+                                }
+                                echo "</section>";
+                            }
+                        }
+                    ?>
+                </ul>
+            </section>
+        </div>
+        
     </div>
     <a class="button fixed-corner" href="#">Top</a>
+    <script type="application/javascript">
+    function reloadIframe(id) {
+        var src = document.getElementById(id).src;
+        document.getElementById(id).src = src;
+    }
+
+    function showBanner(bannerId, e) {
+
+
+
+        //Show banner clicked
+        banner = document.getElementById(bannerId);
+
+        //Toggle button
+        self = e;
+        console.log(self.innerHTML);
+
+        if (self.innerHTML == 'Open') {
+            //Show banner clicked
+            hideAllBanners();
+            banner.className = "";
+            banner.className = "wrap-iframe";
+            self.innerHTML = 'Close';
+        } else {
+            banner.className = "wrap-iframe hide";
+            self.innerHTML = 'Open';
+        }
+    }
+
+    function hideAllBanners() {
+
+        //Hide all banner
+        listBanners = document.getElementsByClassName('wrap-iframe');
+        for (var i = 0; i < listBanners.length; i++) {
+            listBanners[i].className = "wrap-iframe hide";
+        }
+
+        //Reset all button to Open
+        listButtons = document.getElementsByClassName('btn-show-hide');
+        for (var i = 0; i < listBanners.length; i++) {
+            listButtons[i].innerHTML = 'Open';
+        }
+    }
+    </script>
 </body>
 
 </html>
