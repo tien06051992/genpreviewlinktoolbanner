@@ -142,6 +142,7 @@
             background: #000000;
             border-bottom: 5px solid #a1a1a1;
             padding: 29px 18px;
+            position: relative;
         }
         
         .bottom-header {
@@ -155,6 +156,11 @@
             float: left;
             height: 100%;
             width: auto;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
         }
         
         .dp-logo {

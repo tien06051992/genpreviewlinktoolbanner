@@ -34,6 +34,7 @@
 
 <body>
     <?php
+
         function dirToArray($dir, $acceptExtension,$deep) { 
            $result = array(); 
            $cdir = scandir($dir);
@@ -59,7 +60,7 @@
                       ) continue;
                     if(in_array($infoFile->getExtension(), $acceptExtension)) {
                       $result[] = $value;
-                    }  
+                    }
                  }
               }
            }     
