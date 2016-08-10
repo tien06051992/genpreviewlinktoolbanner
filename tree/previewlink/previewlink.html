@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>previewlink</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html,
+        body {
+            font-size: 14px;
+            font-family: "Roboto", sans-serif;
+        }
+        
+        #container {
+            padding: 0 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            font-weight: 300;
+            font-size: 32px;
+            padding: 20px 0;
+        }
+        
+        .section-title {
+            font-weight: 300;
+            font-size: 28px;
+            padding: 10px 0;
+        }
+        
+        a {
+            transition: all 0.5s linear;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+        
+        .button {
+            font-weight: 300;
+            text-align: center;
+            display: inline-block;
+            padding: 10px 20px;
+            border: solid 1px #D4D4D4;
+            border-radius: 5px;
+            color: #CCCCCC;
+            font-size: 18px;
+            background: #FFFFFF;
+            cursor: pointer;
+            margin-bottom: 3px;
+        }
+        
+        .button:hover,
+        .button:active {
+            color: #363636;
+        }
+        
+        .button:active {
+            box-shadow: inset 0 0 3px #DDDDDD;
+        }
+        
+        .fixed-corner {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        
+        hr {
+            border-top: solid 1px #DDDDDD;
+            border-bottom: none;
+            margin: 15px 0;
+        }
+        
+        iframe {
+            border: solid 1px #DDDDDD;
+        }
+        
+        img {
+            border: solid 1px #DDDDDD;
+        }
+        
+        h2 .button {
+            padding: 5px 10px;
+            vertical-align: bottom;
+        }
+        
+        #links strong {
+            display: inline-block;
+            min-width: 100px;
+            margin-right: 10px;
+        }
+
+        /******* Updated 21/07/2016 *******/
+        
+        .wrap-iframe {
+            -webkit-transition: all 0.4s ease-in-out;
+            -moz-transition: all 0.4s ease-in-out;
+            -ms-transition: all 0.4s ease-in-out;
+            -o-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 20px;
+        }
+        
+        .hide {
+            height: 0px !important;
+            padding-top: 0;
+        }
+        
+        #links h4 {
+            margin: 20px 0;
+        }
+        
+        .top-header {
+            height: 104px;
+            background: #000000;
+            border-bottom: 5px solid #a1a1a1;
+            padding: 29px 18px;
+            position: relative;
+        }
+        
+        .bottom-header {
+            padding: 0 18px;
+            background: #f2f2f2;
+            border-bottom: 1px solid #cccccc;
+        }
+        
+        .brand-logo {
+            border: none;
+            float: left;
+            height: 100%;
+            width: auto;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+        }
+        
+        .dp-logo {
+            float: right;
+            border: none;
+            height: 100%;
+            width: auto;
+        }
+        
+        .main ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main ul li {
+            border-bottom: 1px solid #cccccc;
+            padding: 20px 0;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .main ul li label {
+            font-size: 28px;
+            font-weight: 300;
+            margin-right: 8px;
+            float: left;
+        }
+        
+        .main ul li button {
+            padding: 5px 10px;
+            font-weight: 300;
+            text-align: center;
+            display: inline-block;
+            border: solid 1px #D4D4D4;
+            border-radius: 5px;
+            color: #CCCCCC;
+            font-size: 18px;
+            background: #FFFFFF;
+            cursor: pointer;
+            float: left;
+            margin-right: 11px;
+            min-width: 67px;
+        }
+
+        .waves-effect {
+        position: relative;
+        cursor: pointer;
+        display: inline-block;
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        vertical-align: middle;
+        z-index: 1;
+        will-change: opacity, transform;
+        transition: all .3s ease-out;
+    }
+    
+    .btn {
+        text-decoration: none;
+        color: #fff;
+        background-color: #26a69a;
+        text-align: center;
+        letter-spacing: .5px;
+        transition: .2s ease-out;
+        cursor: pointer;
+        border: none;
+        border-radius: 2px;
+        display: inline-block;
+        height: 36px;
+        line-height: 36px;
+        outline: 0;
+        padding: 0 2rem;
+        text-transform: uppercase;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+    
+    .btn:hover {
+        background-color: #2bbbad;
+        box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+        outline: 0;
+    }
+    
+    .bg-red {
+        background-color: #F44336;
+    }
+    
+    .bg-red:hover {
+        background-color: #fd1c0c;
+    }
+    
+    .controll-main {
+        padding: 10px 0;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <header>
+            <div class="top-header">
+                <img class="brand-logo" src="images/brand.png" alt="">
+                <img class="dp-logo" src="images/dp-logo.jpg" alt="">
+            </div>
+            <div class="bottom-header">
+                <h1 class="page-title">previewlink</h1>
+                <section id="links">
+                    <h4>agefi-fr</h4><a href='#agefi-fr-300x250' class='button'>300x250</a>
+<a href='#agefi-fr-300x600' class='button'>300x600</a>
+<a href='#agefi-fr-Habillage_1440x1000' class='button'>Habillage_1440x1000</a>
+<br><br><h4>boursier-com</h4><a href='#boursier-com-1000x200' class='button'>1000x200</a>
+<a href='#boursier-com-120x600' class='button'>120x600</a>
+<a href='#boursier-com-320x480' class='button'>320x480</a>
+<a href='#boursier-com-468x60' class='button'>468x60</a>
+<a href='#boursier-com-640x960' class='button'>640x960</a>
+<a href='#boursier-com-960x640' class='button'>960x640</a>
+<br><br><h4>boursoramafr</h4><a href='#boursoramafr-1000x90' class='button'>1000x90</a>
+<br><br><h4>images</h4><a href='#images-0' class='button'>brand.png</a>
+<a href='#images-1' class='button'>dp-logo.jpg</a>
+<br><br><h4>lesechos-fr-investir</h4><a href='#lesechos-fr-investir-1000x300' class='button'>1000x300</a>
+<br><br><h4>optionfinance-fr</h4><a href='#optionfinance-fr-940x250' class='button'>940x250</a>
+<br><br>                </section>
+            </div>
+        </header>
+        <div class="main">
+            <div class="controll-main">
+                <button onclick="showAllBanner()" class="waves-effect waves-light btn">Show All Banners</button>
+                <button onclick="hideAllBanners()" class="waves-effect waves-light btn bg-red">Close All Banners</button>
+            </div>
+            <section id='Banners HTML5'>
+                <ul>
+                    <section id='agefi-fr'>                                        <li>
+                                            <div class="title">
+                                                <label id="agefi-fr-300x250">300x250</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-agefi-fr-300x250',this)">Open</button>
+                                                <button onclick="reloadIframe('iagefi-fr-300x250')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-agefi-fr-300x250" style="height:272px">
+                                                    <iframe id="iagefi-fr-300x250" scrolling="no" width="302" height="252" data-src="agefi-fr/300x250/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                                                                <li>
+                                            <div class="title">
+                                                <label id="agefi-fr-300x600">300x600</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-agefi-fr-300x600',this)">Open</button>
+                                                <button onclick="reloadIframe('iagefi-fr-300x600')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-agefi-fr-300x600" style="height:622px">
+                                                    <iframe id="iagefi-fr-300x600" scrolling="no" width="302" height="602" data-src="agefi-fr/300x600/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                                                                <li>
+                                            <div class="title">
+                                                <label id="agefi-fr-Habillage_1440x1000">Habillage_1440x1000</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-agefi-fr-Habillage_1440x1000',this)">Open</button>
+                                                <button onclick="reloadIframe('iagefi-fr-Habillage_1440x1000')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-agefi-fr-Habillage_1440x1000" style="height:1022px">
+                                                    <iframe id="iagefi-fr-Habillage_1440x1000" scrolling="no" width="1442" height="1002" data-src="agefi-fr/Habillage_1440x1000/HAB_SAINT_GOBAIN_AGEFI.jpg" src=""></iframe>
+                                                </div>
+                                        </li>
+                                        </section><section id='boursier-com'>                                        <li>
+                                            <div class="title">
+                                                <label id="boursier-com-1000x200">1000x200</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-boursier-com-1000x200',this)">Open</button>
+                                                <button onclick="reloadIframe('iboursier-com-1000x200')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-boursier-com-1000x200" style="height:222px">
+                                                    <iframe id="iboursier-com-1000x200" scrolling="no" width="1002" height="202" data-src="boursier-com/1000x200/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                                                                <li>
+                                            <div class="title">
+                                                <label id="boursier-com-120x600">120x600</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-boursier-com-120x600',this)">Open</button>
+                                                <button onclick="reloadIframe('iboursier-com-120x600')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-boursier-com-120x600" style="height:622px">
+                                                    <iframe id="iboursier-com-120x600" scrolling="no" width="122" height="602" data-src="boursier-com/120x600/120x600.gif" src=""></iframe>
+                                                </div>
+                                        </li>
+                                                                                <li>
+                                            <div class="title">
+                                                <label id="boursier-com-320x480">320x480</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-boursier-com-320x480',this)">Open</button>
+                                                <button onclick="reloadIframe('iboursier-com-320x480')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-boursier-com-320x480" style="height:502px">
+                                                    <iframe id="iboursier-com-320x480" scrolling="no" width="322" height="482" data-src="boursier-com/320x480/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                                                                <li>
+                                            <div class="title">
+                                                <label id="boursier-com-468x60">468x60</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-boursier-com-468x60',this)">Open</button>
+                                                <button onclick="reloadIframe('iboursier-com-468x60')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-boursier-com-468x60" style="height:82px">
+                                                    <iframe id="iboursier-com-468x60" scrolling="no" width="470" height="62" data-src="boursier-com/468x60/468x60.gif" src=""></iframe>
+                                                </div>
+                                        </li>
+                                                                                <li>
+                                            <div class="title">
+                                                <label id="boursier-com-640x960">640x960</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-boursier-com-640x960',this)">Open</button>
+                                                <button onclick="reloadIframe('iboursier-com-640x960')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-boursier-com-640x960" style="height:982px">
+                                                    <iframe id="iboursier-com-640x960" scrolling="no" width="642" height="962" data-src="boursier-com/640x960/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                                                                <li>
+                                            <div class="title">
+                                                <label id="boursier-com-960x640">960x640</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-boursier-com-960x640',this)">Open</button>
+                                                <button onclick="reloadIframe('iboursier-com-960x640')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-boursier-com-960x640" style="height:662px">
+                                                    <iframe id="iboursier-com-960x640" scrolling="no" width="962" height="642" data-src="boursier-com/960x640/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                        </section><section id='boursoramafr'>                                        <li>
+                                            <div class="title">
+                                                <label id="boursoramafr-1000x90">1000x90</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-boursoramafr-1000x90',this)">Open</button>
+                                                <button onclick="reloadIframe('iboursoramafr-1000x90')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-boursoramafr-1000x90" style="height:112px">
+                                                    <iframe id="iboursoramafr-1000x90" scrolling="no" width="1002" height="92" data-src="boursoramafr/1000x90/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                        </section><section id='images'>                                        <li>
+                                            <div class="title">
+                                                <label id="images-0">brand.png</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-images-0',this)">Open</button>
+                                                <button onclick="reloadIframe('iimages-0')">Reload</button>
+                                            </div>
+                                                                                        <div class="wrap-iframe hide" id="wrap-iframe-images-0" style="height:<br />
+<b>Notice</b>:  Undefined offset: 1 in <b>C:\xampp\htdocs\treeview\tree\previewlink\preview.php</b> on line <b>320</b><br />
+22px">
+                                            <img id="iimages-0" width="<br />
+<b>Notice</b>:  Undefined offset: 0 in <b>C:\xampp\htdocs\treeview\tree\previewlink\preview.php</b> on line <b>321</b><br />
+2" height="<br />
+<b>Notice</b>:  Undefined offset: 1 in <b>C:\xampp\htdocs\treeview\tree\previewlink\preview.php</b> on line <b>321</b><br />
+2" src="images/brand.png" alt="">
+                                            </div>
+                                                                                            
+                                        </li>
+                                                                        <li>
+                                            <div class="title">
+                                                <label id="images-1">dp-logo.jpg</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-images-1',this)">Open</button>
+                                                <button onclick="reloadIframe('iimages-1')">Reload</button>
+                                            </div>
+                                                                                        <div class="wrap-iframe hide" id="wrap-iframe-images-1" style="height:<br />
+<b>Notice</b>:  Undefined offset: 1 in <b>C:\xampp\htdocs\treeview\tree\previewlink\preview.php</b> on line <b>320</b><br />
+22px">
+                                            <img id="iimages-1" width="<br />
+<b>Notice</b>:  Undefined offset: 0 in <b>C:\xampp\htdocs\treeview\tree\previewlink\preview.php</b> on line <b>321</b><br />
+2" height="<br />
+<b>Notice</b>:  Undefined offset: 1 in <b>C:\xampp\htdocs\treeview\tree\previewlink\preview.php</b> on line <b>321</b><br />
+2" src="images/dp-logo.jpg" alt="">
+                                            </div>
+                                                                                            
+                                        </li>
+                                </section><section id='lesechos-fr-investir'>                                        <li>
+                                            <div class="title">
+                                                <label id="lesechos-fr-investir-1000x300">1000x300</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-lesechos-fr-investir-1000x300',this)">Open</button>
+                                                <button onclick="reloadIframe('ilesechos-fr-investir-1000x300')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-lesechos-fr-investir-1000x300" style="height:322px">
+                                                    <iframe id="ilesechos-fr-investir-1000x300" scrolling="no" width="1002" height="302" data-src="lesechos-fr-investir/1000x300/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                        </section><section id='optionfinance-fr'>                                        <li>
+                                            <div class="title">
+                                                <label id="optionfinance-fr-940x250">940x250</label>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-optionfinance-fr-940x250',this)">Open</button>
+                                                <button onclick="reloadIframe('ioptionfinance-fr-940x250')">Reload</button>
+                                            </div>
+                                                                                            <div class="wrap-iframe hide" id="wrap-iframe-optionfinance-fr-940x250" style="height:272px">
+                                                    <iframe id="ioptionfinance-fr-940x250" scrolling="no" width="942" height="252" data-src="optionfinance-fr/940x250/index.html" src=""></iframe>
+                                                </div>
+                                        </li>
+                                        </section>                </ul>
+            </section>
+        </div>
+        
+    </div>
+    <a class="button fixed-corner" href="#">Top</a>
+    <script src="jquery-3.1.0.min.js" type="text/javascript"></script>
+    <script type="application/javascript">
+    function reloadIframe(id) {
+        //Open banner when it's closed
+        if($('#' +id.substring(1, id.length)).next().html() == 'Open') {
+            $('#' +id.substring(1, id.length)).next().click();
+        }else {
+            var src = $("#" + id).attr("data-src");
+            document.getElementById(id).src = src;
+        }
+    }
+
+
+    $("#links a").click(function(e) {
+        hideAllBanners();
+        labelID = $(this).attr('href');
+        $(labelID).next().html('Close');
+        bannerId = '#wrap-iframe-' + labelID.substring(1, labelID.length); 
+        $(bannerId).removeClass("hide");
+        setTimeout(function() {
+            $('html, body').animate({
+                scrollTop: $(bannerId).offset().top - 50
+            }, 300);
+            reloadIframe('i' + labelID.substring(1, labelID.length));
+        }, 500);
+    });
+
+
+    function showBanner(bannerId, e) {
+
+        //Toggle button
+        self = e;
+        bannerId = '#' + bannerId;
+        console.log($(self));
+
+        if ($(self).html() == 'Open') {
+            hideAllBanners();
+
+            //Show current banner
+            $(bannerId).removeClass("hide");
+
+            //Change button to Close
+            $(self).html('Close');
+
+            //Scroll to banner
+            scrollToBanner(bannerId) ;
+        } else {
+            $(bannerId).addClass("hide");
+            $(self).html('Open');
+        }
+    }
+
+    function showAllBanner() {
+        //Change all button to Close mode
+        $(".btn-show-hide").html("Close");
+        //Show all banner
+        $(".wrap-iframe").removeClass("hide");
+        $("iframe").each(function() {
+            $(this).attr("src", $(this).attr("data-src"));
+        });
+    }
+
+    function hideAllBanners() {
+
+        //Remove all src iframe
+        $("iframe").attr("src","");
+
+        //Hide all banner
+        listBanners = document.getElementsByClassName('wrap-iframe');
+        for (var i = 0; i < listBanners.length; i++) {
+            listBanners[i].className = "wrap-iframe hide";
+        }
+
+        //Reset all button to Open
+        listButtons = document.getElementsByClassName('btn-show-hide');
+        for (var i = 0; i < listBanners.length; i++) {
+            listButtons[i].innerHTML = 'Open';
+        }
+    }
+
+    function scrollToBanner(bannerId) {
+        setTimeout(function() {
+            $('html, body').animate({
+                scrollTop: $(bannerId).offset().top - 50
+            }, 300);
+            reloadIframe($(bannerId).find('iframe').attr('id'));
+        }, 500);
+    }
+    </script>
+</body>
+
+</html>
