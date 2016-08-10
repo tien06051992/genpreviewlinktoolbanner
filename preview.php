@@ -416,6 +416,9 @@
         $("iframe").each(function() {
             $(this).attr("src", $(this).attr("data-src"));
         });
+        $(".wrap-iframe img").each(function() {
+            $(this).attr("src", $(this).attr("data-src"));
+        });
     }
 
     function hideAllBanners() {
