@@ -1,0 +1,116 @@
+@charset "iso-8859-1";
+/* CSS Document */
+
+body{
+  margin:0px;
+}
+
+#ad{
+   display: block;
+    border: 1px solid #000;
+   overflow:hidden;
+   width: 358px;
+	height: 58px;
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+#banner{
+     width: 358px;
+	height: 58px;
+    background: url(images/bg.jpg);   
+    position: relative;
+    overflow: hidden;
+	 
+}
+
+#banner div {
+  -webkit-animation-duration: 4s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-direction: normal;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-play-state: running;
+  -webkit-animation-fill-mode: forwards;
+
+  -moz-animation-duration: 4s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-direction: normal;
+  -moz-animation-delay: 0s;
+  -moz-animation-play-state: running;
+  -moz-animation-fill-mode: forwards;
+
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-delay: 0s;
+  animation-play-state: running;
+  animation-fill-mode: forwards;
+}
+
+#img_1{
+	position:absolute;
+	top:3px;
+	left:3px;
+	width: 159px;
+	height: 51px;
+	-webkit-animation-name: img_1Anim;
+	-moz-animation-name: img_1Anim;
+	animation-name: img_1Anim;
+}
+#img_2{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width: 358px;
+	height: 58px;
+	-webkit-animation-name: img_2Anim;
+	-moz-animation-name: img_2Anim;
+	animation-name: img_2Anim;
+}
+
+
+/* animations  ----------------------------------------------------------------*/
+/*img_1*/
+@-webkit-keyframes img_1Anim {
+	0% {opacity:0; }
+	25% {opacity:1; }
+	100% {opacity:1; }
+}
+@-moz-keyframes img_1Anim {
+	0% {opacity:0; }
+	25% {opacity:1; }
+	100% {opacity:1; }
+}
+@keyframes img_1Anim {
+	0% {opacity:0; }
+	25% {opacity:1; }
+	100% {opacity:1; }
+}
+
+/*img_2*/
+@-webkit-keyframes img_2Anim {
+	0% {opacity:0; }
+	30% {opacity:0; }
+	55% {opacity:1; }
+	100% {opacity:1; }
+}
+@-moz-keyframes img_2Anim {
+	0% {opacity:0; }
+	30% {opacity:0; }
+	55% {opacity:1; }
+	100% {opacity:1; }
+}
+@keyframes img_2Anim {
+	0% {opacity:0; }
+	30% {opacity:0; }
+	55% {opacity:1; }
+	100% {opacity:1; }
+}
+
+
