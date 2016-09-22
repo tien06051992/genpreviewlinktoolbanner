@@ -149,6 +149,7 @@
             padding: 0 18px;
             background: #f2f2f2;
             border-bottom: 1px solid #cccccc;
+            padding-top: 1px;
         }
         
         .brand-logo {
@@ -260,6 +261,62 @@
     .controll-main {
         padding: 10px 0;
     }
+    .title {
+        display: inherit;
+    }
+    .list-country ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: inline-flex;
+        width: 100%;
+    }
+    
+    .list-country ul li {
+        width: 100%;
+        text-align: center;
+        border-right: 1px solid #cdcdcd;
+        border-left: 1px solid #cdcdcd;
+    }
+    
+    .list-country ul li a {
+        font-size: 20px;
+        color: #000;
+        padding: 10px 0;
+        display: block;
+        margin: 0;
+    }
+    
+    .list-country ul li.active a {
+        background: #000;
+        color: #fff;
+    }
+    
+    .arrow_box {
+        position: relative;
+        background: #000;
+        border: 0px solid #000000;
+    }
+    
+    .arrow_box {
+        position: relative;
+        background: #000000;
+    }
+    
+    .arrow_box:after {
+        top: 100%;
+        left: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(0, 0, 0, 0);
+        border-top-color: #000000;
+        border-width: 10px;
+        margin-left: -10px;
+    }
 
     </style>
 </head>
@@ -271,7 +328,17 @@
                 <img class="brand-logo" src="images/brand.png" alt="">
                 <img class="dp-logo" src="images/dp-logo.jpg" alt="">
             </div>
-            <div class="bottom-header">
+            <div class="list-country">
+                <ul>
+                    <li class="active"><a class="arrow_box" href="../Argentina/Argentina.html">Argentina</a></li>
+                    <li><a href="../Mexico/Mexico.html">Mexico</a></li>
+                    <li><a href="../Middle_East/Middle_East_v3.html">Middle_East</a></li>
+                    <li><a href="../Spain/Spain_v3.html">Spain</a></li>
+                    <li><a href="../Suisse/Suisse_v3.html">Suisse</a></li>
+                    <li><a href="../UK/UK_v3.html">UK</a></li>
+                </ul>
+            </div>
+            <!-- <div class="bottom-header">
                 <h1 class="page-title"><?php echo $banner_name ?></h1>
                 <section id="links">
                     <?php 
@@ -290,7 +357,7 @@
                         }
                     ?>
                 </section>
-            </div>
+            </div> -->
         </header>
         <div class="main">
             <div class="controll-main">
@@ -299,7 +366,8 @@
             </div>
             <section id='Banners HTML5'>
                 <ul>
-                    <?php 
+                    <?php
+                        $fourfirstItem = 0;
                         foreach ($total[$first_key] as $key => $concept) {
                             if(is_array($concept) && !empty($concept)) {
                                 echo "<section id='$key'>" ;
@@ -309,41 +377,43 @@
                                         <li>
                                             <div class="title">
                                                 <label id="<?php echo $key."-".$key2 ?>"><?php echo $banner; ?></label>
-                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-<?php echo $key."-".$key2 ?>',this)">Open</button>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-<?php echo $key."-".$key2 ?>',this)"><?php if($fourfirstItem > 3){ echo "Open";}else { echo "Close"; } ?></button>
                                                 <button onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</button>
                                             </div>
-                                            <?php 
+                                            <?php
                                             $dimention = extract_numbers($banner);
                                             $arrayStaicImageBanner = array("jpg","gif","png");
                                             if(in_array(get_type_static_banner($banner),$arrayStaicImageBanner)) {
                                             ?>
-                                            <div class="wrap-iframe hide" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px">
-                                            <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" data-src="<?php echo $key."/".$banner ?>" src="" alt="">
+                                            <div class="wrap-iframe <?php if($fourfirstItem > 3) {echo 'hide';} else {echo '';} ?>" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px;width:<?php echo $dimention[0]+22; ?>px">
+                                            <img id="i<?php echo $key."-".$key2 ?>" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" data-src="<?php echo $key."/".$banner ?>" src="<?php if($fourfirstItem > 3) {echo  ''; } else {echo $key."/".$banner;} ?>" alt="">
                                             </div>
                                             <?php 
                                                 } else { ?>
-                                                    <div class="wrap-iframe hide" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px">
-                                                        <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" data-src="<?php echo $key."/".$banner ?>" src=""></iframe>
+                                                    <div class="wrap-iframe <?php if($fourfirstItem > 3) {echo 'hide';} else {echo '';} ?>" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px;width:<?php echo $dimention[0]+22; ?>px">
+                                                        <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" data-src="<?php echo $key."/".$banner ?>" src="<?php if($fourfirstItem > 3) {echo  ''; } else {echo $key."/".$banner;} ?>"></iframe>
                                                     </div>
                                                 <?php }
                                             ?>
                                                 
                                         </li>
                                 <?php
+                                    $fourfirstItem ++;
                                     } else {
                                         ?>
                                         <li>
                                             <div class="title">
                                                 <label id="<?php echo $key."-".$key2 ?>"><?php echo $key2; ?></label>
-                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-<?php echo $key."-".$key2 ?>',this)">Open</button>
+                                                <button class=" btn-show-hide" onclick="showBanner('wrap-iframe-<?php echo $key."-".$key2 ?>',this)"><?php if($fourfirstItem > 3){ echo "Open";}else { echo "Close"; } ?></button>
                                                 <button onclick="reloadIframe('i<?php echo $key."-".$key2 ?>')">Reload</button>
                                             </div>
                                             <?php $dimention = extract_numbers($key2); ?>
-                                                <div class="wrap-iframe hide" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px">
-                                                    <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" data-src="<?php echo $key."/".$key2."/".$banner[0] ?>" src=""></iframe>
+                                                <div class="wrap-iframe <?php if($fourfirstItem > 3) {echo 'hide';} else {echo '';} ?>" id="wrap-iframe-<?php echo $key."-".$key2 ?>" style="height:<?php echo $dimention[1]+22; ?>px;width:<?php echo $dimention[0]+22; ?>px">
+                                                    <iframe id="i<?php echo $key."-".$key2 ?>" scrolling="no" width="<?php echo $dimention[0]+2; ?>" height="<?php echo $dimention[1]+2; ?>" data-src="<?php echo $key."/".$key2."/".$banner[0] ?>" src="<?php if($fourfirstItem > 3) {echo  ''; } else {echo $key."/".$key2."/".$banner[0];} ?>"></iframe>
                                                 </div>
                                         </li>
                                         <?php
+                                        $fourfirstItem ++;
                                     }
                                 }
                                 echo "</section>";
@@ -405,6 +475,7 @@
             scrollToBanner(bannerId) ;
         } else {
             $(bannerId).addClass("hide");
+            $(bannerId).children().attr('src', '');
             $(self).html('Open');
         }
     }
